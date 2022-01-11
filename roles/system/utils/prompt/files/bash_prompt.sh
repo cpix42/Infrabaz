@@ -21,7 +21,7 @@ light_yellow="$(setaf_with_type 223)"
 bold="$(tput bold)"
 reset="$(tput sgr0)"
 
-if [ "$(id -u)" == "0" ]; then 
+if [ "$(id -u)" == "0" ]; then
     PS1="\[$red$bold\]ROOT\[$reset\]@\h\[$reset\] \\$ "
 else
     PS1="\[$light_yellow\]\u@\h\[$grey\] \$ \[$reset\]"
