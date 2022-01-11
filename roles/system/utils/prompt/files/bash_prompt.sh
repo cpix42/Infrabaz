@@ -1,8 +1,12 @@
 #!/usrv/env bash
 
+# a bash prompt for servers to make a difference with PC prompt
+# and a root prompt a little more obvious.
+# source it in .bashrc (as well as root .bashrc).
+
 # require tput
 if ! which tput &>/dev/null; then
-    echo "$0" ERREUR tput introuvable >&2
+    echo ERROR tput not found >&2
     return
 fi
 
@@ -27,6 +31,7 @@ else
     PS1="\[$light_yellow\]\u@\h\[$grey\] \$ \[$reset\]"
 fi
 
+# PROMPT COMMAND for additional line with git branch and pwd
 PROMPT_COMMAND='
     tput setaf 8
     tput bold
