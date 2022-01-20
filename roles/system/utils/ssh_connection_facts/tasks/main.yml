@@ -14,32 +14,32 @@
   tags: always
 
 - name: try to connect to this non default port
-  become: false
   ansible.builtin.wait_for:
     port: "{{ ansible_port }}"
     host: "{{ ansible_ssh_host }}"
     state: started
     search_regex: OpenSSH
     timeout: "2"
+  become: false
   delegate_to: "localhost"
   ignore_errors: yes
   register: scf_specific_port_connection_sucess
   tags: always
 
 - name: set ansible_port to default when previous connection fails
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_port: "{{ scf_default_port }}"
   when: scf_specific_port_connection_sucess is failed
   tags: always
 
 - name: try to connect to default ssh port
-  become: false
   ansible.builtin.wait_for:
     port: "{{ ansible_port }}"
     host: "{{ ansible_ssh_host }}"
     state: started
     search_regex: OpenSSH
     timeout: "2"
+  become: false
   delegate_to: "localhost"
   ignore_errors: yes
   when: scf_specific_port_connection_success is failed

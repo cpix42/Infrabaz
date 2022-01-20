@@ -1,7 +1,7 @@
 ---
 
 - name: packaged tools
-  apt:
+  ansible.builtin.apt:
     pkg:
       - ripgrep
       - fd-find

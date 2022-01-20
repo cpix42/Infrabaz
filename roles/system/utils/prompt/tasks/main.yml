@@ -1,9 +1,5 @@
 ---
 
-- name: required pakages
-  ansible.builtin.apt:
-  
-
 - name: deploy bash_prompt.sh for user ${prpt_user.name}
   ansible.builtin.file:
     src: bash_prompt.sh
