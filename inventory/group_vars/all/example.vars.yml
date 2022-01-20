@@ -1,0 +1,5 @@
+---
+
+infra_name: company_name.org
+
+ssh_specific_port: 12345

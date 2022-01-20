@@ -1,0 +1,53 @@
+---
+
+#> Figure how to connect to a server :
+#> a fresh server not yet configured does not have ssh listening on the NON default port
+#
+#> Required variables:
+#> scf_specific_port: a non default port where ssh should be listnening
+#> scf_default_port: 22
+
+
+- name: set ansible port to non default
+  ansible.builtin.set_fact:
+    ansible_port: "{{ scf_specific_port }}"
+  tags: always
+
+- name: try to connect to this non default port
+  become: false
+  ansible.builtin.wait_for:
+    port: "{{ ansible_port }}"
+    host: "{{ ansible_ssh_host }}"
+    state: started
+    search_regex: OpenSSH
+    timeout: "2"
+  delegate_to: "localhost"
+  ignore_errors: yes
+  register: scf_specific_port_connection_sucess
+  tags: always
+
+- name: set ansible_port to default when previous connection fails
+  set_fact:
+    ansible_port: "{{ scf_default_port }}"
+  when: scf_specific_port_connection_sucess is failed
+  tags: always
+
+- name: try to connect to default ssh port
+  become: false
+  ansible.builtin.wait_for:
+    port: "{{ ansible_port }}"
+    host: "{{ ansible_ssh_host }}"
+    state: started
+    search_regex: OpenSSH
+    timeout: "2"
+  delegate_to: "localhost"
+  ignore_errors: yes
+  when: scf_specific_port_connection_success is failed
+  register: scf_default_port_connection_succes
+  tags: always
+
+- name: fail if no connect method found
+  ansible.builtin.fail:
+    msg: "No connect method available"
+  when:  scf_default_port_connection_succes is failed
+  tags: always

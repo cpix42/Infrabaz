@@ -1,0 +1,4 @@
+---
+
+scf_specific_port: "{{ ssh_specific_port }}"
+scf_default_port: 22
