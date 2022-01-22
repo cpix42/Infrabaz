@@ -1,0 +1,6 @@
+---
+
+main_ip: 192.168.122.4     # the only ip for most of the server except the openvpn servers that have a vpn ip used to connect to
+
+provided_root_pwd: "{{ vault_provided_root_pwd }}"    # root passwd set up by you server/vps/cloud host provider, you can ignore if that doesnt concerns you
+root_pwd: "{{ vault_root_pwd }}"

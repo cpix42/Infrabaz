@@ -1,4 +1,0 @@
----
-
-main_ip: 99.123.88.12     # the only ip for most of the server except the openvpn servers that have a vpn ip used to connect to
-

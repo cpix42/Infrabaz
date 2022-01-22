@@ -2,4 +2,4 @@
 
 infra_name: company_name.org
 
-ssh_specific_port: 12345
+ssh_specific_port: 12345  # used by system/utils/ssh_connection_facts and system/ssh_setup
