@@ -3,4 +3,3 @@
   gather_facts: false
   roles:
     - system/utils/ssh_connection_facts
-  tags: suscf
