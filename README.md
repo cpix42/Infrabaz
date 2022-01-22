@@ -21,4 +21,4 @@ Example files and folders give you an idea about the expected data to use this p
 
 # Disclaimer
 
-THIS PLAYBOOK IS PROVIDED "AS IS" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND. Use it at your own risk.
+THIS PLAYBOOK IS PROVIDED "AS IS" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
